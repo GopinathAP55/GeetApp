@@ -1,0 +1,33 @@
+
+
+button{
+    width: 200px;
+    margin-left: 180px;
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+    padding: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+a{
+ color: aliceblue;
+}
+
+.nav-link:hover{
+    font-size: 25px
+}
+
+.textboxInvalid{
+    border-color: red;
+}
+
+.btn{
+    background-color:rgba(49, 163, 87, 0.808);
+}
+.logout{
+    color: red;
+}

@@ -1,0 +1,23 @@
+.logo {
+    height: 100px;
+    width: 100px;
+    padding: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+.signup {
+    height: 35px;
+    width: 75px;
+    padding: 1px;
+    display: block;
+    margin: 0 auto;
+    align-content:space-between;
+    font-size: 17px;
+font-style: initial}
+.btn{
+    background-color:rgba(49, 163, 87, 0.808);
+}
+.textboxInvalid{
+    border-color: red;
+}

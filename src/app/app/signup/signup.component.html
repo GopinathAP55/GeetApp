@@ -1,0 +1,27 @@
+<!--Form for signupcomponent-->
+<div class="wrapper fadeInDown">
+  <form (ngSubmit)="onSignUp(signUpForm)" #signUpForm="ngForm">
+    <div>
+      <img title="Glitter" class="logo" src="/assets/icongrammarly.png" id="icon" alt="User Icon" />
+    </div>
+    <div class="form-group">
+      <input type="text" placeholder="User Name" id="username" required ngModel name="username"
+        [ngClass]="{'textboxInvalid': signUpForm.submitted && username==''}" class="form-control" />
+    </div>
+    <div class="form-group">
+      <input type="Email" placeholder="email" id="email" name="email" class="form-control"
+        [ngClass]="{'textboxInvalid': signUpForm.submitted && email ==''}" ngModel required />
+    </div>
+    <div class="form-group">
+      <input type="Password" placeholder="password" id="password" ngModel name="password"
+        [ngClass]="{'textboxInvalid': signUpForm.submitted && password==''}" class="form-control" />
+    </div>
+    <div class="form-group">
+      <input type="text" placeholder="Phone Number" id="phoneNumber" ngModel name="phoneNumber" required
+        [ngModel]="phoneNumber" minlength="10" [ngClass]="{'textboxInvalid': signUpForm.submitted && phoneNumber=='' }"
+        class="form-control" />
+    </div>
+    <button class="btn btn-primary signup" type="submit">Sign Up</button>
+  </form>
+</div>
+
