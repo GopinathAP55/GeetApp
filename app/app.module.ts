@@ -8,7 +8,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { SignupComponent } from './app/signup/signup.component';
 import { UserServiceService } from '../app/service/user-service.service'
 import { HttpClientModule } from '@angular/common/http';
-import { MainpageComponent } from './login-page/mainpage/mainpage.component'
+import { MainpageComponent } from './login-page/mainpage/mainpage.component' 
+import { AuthGuard } from './app/auth.guard/auth.guard';
+import { AuthInterceptor } from './app/auth.guard/auth.interceptor';
+import { UserProfileComponent } from './login-page/user-profile/user-profile.component';
 
 const appRoutes : Routes = [
   {
@@ -23,6 +26,10 @@ const appRoutes : Routes = [
     path : 'geet',
     component:MainpageComponent
   },
+  {
+    path : 'profile',
+    component:UserProfileComponent
+  }
  
 ];
 
@@ -31,7 +38,8 @@ const appRoutes : Routes = [
     AppComponent,
     LoginPageComponent,
     SignupComponent,
-    MainpageComponent
+    MainpageComponent,
+    UserProfileComponent
     
   ],
   imports: [
@@ -41,7 +49,7 @@ const appRoutes : Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserServiceService],
+  providers: [UserServiceService,AuthGuard,AuthInterceptor],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
