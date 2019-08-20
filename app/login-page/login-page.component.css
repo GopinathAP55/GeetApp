@@ -29,3 +29,7 @@ color:#00B33C;
 .textboxInvalid{
     border-color: red;
 }
+
+.errors{
+    background-color: red;
+}
