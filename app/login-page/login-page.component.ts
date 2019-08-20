@@ -19,6 +19,7 @@ export class LoginPageComponent implements OnInit {
 
   email : string = '';
   password : string ='';
+  errormessage:"";
 
 
   onLogin(form : NgForm){
@@ -26,15 +27,19 @@ export class LoginPageComponent implements OnInit {
    this.password = form.value.password;
    if(this.email != '' && this.password!=''){
      //By using the service method passes the form value to insert using observable.
-    this.Userservice.getLoginDetails(form.value).subscribe(
-      req=>{
+    this.Userservice.authentication(form.value).subscribe(
+      res=>{
+
         this.loginSuccessfrom = "true";     
+        this.Userservice.setToken(res['token']);
         //An eventEmitter to pass the value from this component to another component
         this.Userservice.onLoginEmitData(this.loginSuccessfrom);
+        this.router.navigateByUrl('/login');
         this.router.navigate(['/']);
       },
       err=>{
         console.log(err);
+        this.errormessage = err.error.message;    
         this.loginSuccessfrom = "false"; 
         this.Userservice.onLoginEmitData(this.loginSuccessfrom);
       });
