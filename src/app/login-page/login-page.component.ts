@@ -19,22 +19,28 @@ export class LoginPageComponent implements OnInit {
 
   email : string = '';
   password : string ='';
+  errormessage:"";
 
 
   onLogin(form : NgForm){
    this.email=form.value.email;
    this.password = form.value.password;
-   if(this.email != '' && this.password!=''){
+   if(form.valid){
      //By using the service method passes the form value to insert using observable.
-    this.Userservice.getLoginDetails(form.value).subscribe(
-      req=>{
+    this.Userservice.authentication(form.value).subscribe(
+      res=>{
+        console.log('insdie auth')
         this.loginSuccessfrom = "true";     
+        this.Userservice.setToken(res['token']);
         //An eventEmitter to pass the value from this component to another component
         this.Userservice.onLoginEmitData(this.loginSuccessfrom);
-        this.router.navigate(['/']);
+        this.router.navigateByUrl('/geet');
+        
       },
       err=>{
+        console.log('insdie auth')
         console.log(err);
+        this.errormessage = err.error.message;    
         this.loginSuccessfrom = "false"; 
         this.Userservice.onLoginEmitData(this.loginSuccessfrom);
       });

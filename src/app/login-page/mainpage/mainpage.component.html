@@ -1,6 +1,6 @@
 <!--Form for geet value and its button to geet value add to the array-->
 <form (ngSubmit)="geetFormSubmit(geetForm)" #geetForm="ngForm">
-  <textarea class="form-control" id="" cols="30" rows="10" ngModel [(ngModel)]="textareaValue"
+  <textarea class="form-control textareacontrol" id="" cols="30" rows="10" ngModel [(ngModel)]="textareaValue"
     name="geetBox"></textarea>
   <input class="file-input" type="file" name="fileUploadTag" ngModel (change)="onSelectFile($event)">
   <ng-container *ngIf="url!=''">

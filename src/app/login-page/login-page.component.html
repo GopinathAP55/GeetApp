@@ -1,5 +1,7 @@
-<div>
-    <form (ngSubmit)="onLogin(login)" #login="ngForm">
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-t-85 p-b-20 border border-primary">
+            <form (ngSubmit)="onLogin(login)" #login="ngForm" class="login100-form validate-form">
         <div>
             <img title="Glitter"class="logo" src="/assets/icongrammarly.png" id="icon" alt="User Icon" />
             
@@ -13,10 +15,25 @@
                 [ngClass]="{'textboxInvalid': login.submitted && password=='' }"class="form-control"/>
             </div>
             <button class="btn btn-primary login" type="submit" >Log In</button>            
-        </form>
-</div>     
+        
+        <div class="bottomParts">
+        <ul class="login-more p-t-190">
+            <li>
+                <span class="txt1">
+                    Don’t have an account?
+                </span>
 
-<div *ngIf="success">
-    
+                <a routerLink="/login/signup" class="txt2">
+                    Sign up
+                </a>
+            </li>
+        </ul>
+        <div *ngIf="loginSuccessfrom=='false'"class="alert alert-danger alert-dismissible fade show erroMessage">
+                <strong>{{errormessage}}</strong>
+         </div>
+    </div>
+</form>
 </div>
- 
+</div>
+</div>
+<router-outlet></router-outlet>
