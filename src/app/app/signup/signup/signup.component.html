@@ -1,0 +1,43 @@
+<!--Form for signupcomponent-->
+<div class="limiter">
+  <div class="container-login100">
+      <div class="wrap-login100 p-t-85 p-b-20 border border-primary">
+  <form (ngSubmit)="onSignUp(signUpForm)" #signUpForm="ngForm">
+    <div>
+      <img title="Glitter" class="logo" src="/assets/icongrammarly.png" id="icon" alt="User Icon" />
+    </div>
+    <div class="form-group">
+      <input type="text" placeholder="User Name" id="username" required ngModel name="username"
+        [ngClass]="{'textboxInvalid': signUpForm.submitted && username==''}" class="form-control" />
+    </div>
+    <div class="form-group">
+      <input type="Email" placeholder="email" id="email" name="email" class="form-control"
+        [ngClass]="{'textboxInvalid': signUpForm.submitted && email ==''}" ngModel required />
+    </div>
+    <div class="form-group">
+      <input type="Password" placeholder="password" id="password" ngModel name="password"
+        [ngClass]="{'textboxInvalid': signUpForm.submitted && password==''}" class="form-control" />
+    </div>
+    <div class="form-group">
+      <input type="text" placeholder="Phone Number" id="phoneNumber" ngModel name="phoneNumber" required
+        [ngModel]="phoneNumber" minlength="10" [ngClass]="{'textboxInvalid': signUpForm.submitted && phoneNumber=='' }"
+        class="form-control" />
+    </div>
+    <button class="btn btn-primary signup" type="submit">Sign Up</button>
+  </form>
+
+  <div *ngIf="success"class="alert alert-danger alert-dismissible fade show erroMessage">
+    <a (click) = "onNewUserClick()" >
+    <strong>Make a way for new user...Click here to Login</strong></a>
+  </div>
+  <div *ngIf="errormessage!='' && !success"class="alert alert-danger alert-dismissible fade show erroMessage">
+    <strong>Geet suspects there is user already in the same Mail ID</strong>
+  </div>
+</div>
+</div>
+</div>
+<router-outlet></router-outlet>
+
+
+
+
