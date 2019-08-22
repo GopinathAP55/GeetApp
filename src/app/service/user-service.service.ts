@@ -3,14 +3,14 @@ import { userDetails } from './usermodel';
 
 import { environment } from '../../environments/environment'
 import { EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { getToken } from '@angular/router/src/utils/preactivation';
 @Injectable({
   providedIn: 'root'
 })
 export class UserServiceService {
 
   loginSuccessOrNot   = new EventEmitter();
-  loginSucess : string = "";
   
   selectedUser : userDetails = {
     username : '',
@@ -18,22 +18,60 @@ export class UserServiceService {
     phoneNumber:'',
     password:''
 };
+
+  noAuthHeader = {headers : new HttpHeaders({'NoAuth':'True'})};
   
   constructor(private http : HttpClient) { }
+  //Posting the user details via service method
   postUserdetails(user : userDetails){
     const apiURL = environment.apiBaseUrl+'/register';
-    return this.http.post(apiURL,userDetails)
+    return this.http.post(apiURL,user,this.noAuthHeader)
+  }
+//
+  authentication(user : userDetails){
+    const apiURL = environment.apiBaseUrl+'/authenticate';
+    return this.http.post(apiURL,user,this.noAuthHeader);
   }
 
-  getLoginDetails(user : userDetails){
+  getLoginDetails(){
     const apiURL = environment.apiBaseUrl+'/login';
     return this.http.get(apiURL);
-
   }
 
   onLoginEmitData(login : string){
-    this.loginSucess="true";
-    this.loginSuccessOrNot.emit(this.loginSucess);
+    this.loginSuccessOrNot.emit(login);
+  }
+
+  setToken(token:string){
+    localStorage.setItem('token',token);
   }
   
+  deleteToken(){
+    localStorage.removeItem('token');
+  }
+
+  getUserPayLoad(){
+    var token = localStorage.getItem('token');
+    if(token){
+      var userPayLoad = atob(token.split('.')[1]);
+      return JSON.parse(userPayLoad);
+    }else{
+      return null;
+    }
+  }
+
+  isLoggedIn(){
+    var userPayLoad = this.getUserPayLoad();
+    if(userPayLoad){
+      return true;
+    }else{
+      return false;
+    }
+
+  }
+
+  getToken(){
+    return  localStorage.getItem('token');
+  }
 }
+

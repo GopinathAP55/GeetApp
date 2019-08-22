@@ -25,5 +25,9 @@ export class AppComponent {
     this.loginSuccess = "false";
     this.router.navigate(['/']);
   }
+
+  onClickProceed(){
+    this.router.navigateByUrl('/login');
+  }
 }
 
