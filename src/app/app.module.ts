@@ -27,7 +27,7 @@ const appRoutes : Routes = [
     component:MainpageComponent
   },
   {
-    path : 'profile',
+    path : 'geet/profile',
     component:UserProfileComponent
   }
  

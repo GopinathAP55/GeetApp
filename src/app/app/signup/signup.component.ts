@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
 
   constructor(private userService : UserServiceService,private router : Router) { }
-
+  errormessage : any = "";
   ngOnInit() {
   }
 
@@ -21,6 +21,10 @@ export class SignupComponent implements OnInit {
   email : string = ''; 
 
   success : boolean = false;
+
+  onNewUserClick(){
+    this.router.navigateByUrl('/login');
+  }
 
   onSignUp(form : NgForm){
     this.username = form.value.username;
@@ -38,9 +42,9 @@ export class SignupComponent implements OnInit {
     this.userService.postUserdetails(form.value).subscribe(
       req=>{
         this.success=true;
-        this.router.navigate(['login']);
       },
       err=>{
+        this.errormessage = err.error.message;
         console.log('not saved')
       });
     }
