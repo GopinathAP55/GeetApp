@@ -37,6 +37,16 @@ export class UserServiceService {
     const apiURL = environment.apiBaseUrl+'/login';
     return this.http.get(apiURL);
   }
+  postGeet(user : userDetails){
+    console.log('service post geet')
+    const apiURL = environment.apiBaseUrl+'/geet';
+    return this.http.post(apiURL,user);
+  }
+  getAllGeet(){
+    console.log('service allgeet')
+    const apiURL = environment.apiBaseUrl+'/allGeet';
+    return this.http.get(apiURL);
+  }
 
   onLoginEmitData(login : string){
     this.loginSuccessOrNot.emit(login);
@@ -73,5 +83,8 @@ export class UserServiceService {
   getToken(){
     return  localStorage.getItem('token');
   }
+
+ 
+  
 }
 

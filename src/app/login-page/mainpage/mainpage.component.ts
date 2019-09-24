@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserServiceService } from '../../service/user-service.service';
+
 
 @Component({
   selector: 'app-mainpage',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class MainpageComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor(private router : Router,private userService : UserServiceService) { }
 
   ngOnInit() {
   }
@@ -30,6 +32,15 @@ export class MainpageComponent implements OnInit {
   }
     //This is to clear the text area.
     this.textareaValue="";
+
+    this.userService.postGeet(form.value).subscribe(
+      req=>{
+
+      },
+      err=>{
+        console.log('not saved')
+      }
+    )
     
   }
   
@@ -48,6 +59,11 @@ export class MainpageComponent implements OnInit {
          }
       }
   }
+
+  onClickAllGeet(){
+    console.log('AllGeet');
+    this.userService.getAllGeet()
+  }
   onClickLogout(){
     console.log('log');
     this.router.navigateByUrl('/login');
@@ -55,6 +71,7 @@ export class MainpageComponent implements OnInit {
   onClickGeet(){
     this.enableGeet = true;
     this.enableProfile = false;
+   
   }
   onClickProfile(){
     this.enableGeet = false;

@@ -12,6 +12,7 @@ import { MainpageComponent } from './login-page/mainpage/mainpage.component'
 import { AuthGuard } from './app/auth.guard/auth.guard';
 import { AuthInterceptor } from './app/auth.guard/auth.interceptor';
 import { UserProfileComponent } from './login-page/user-profile/user-profile.component';
+import { MyDirectiveDirective } from './my-directive.directive';
 
 const appRoutes : Routes = [
   {
@@ -39,7 +40,8 @@ const appRoutes : Routes = [
     LoginPageComponent,
     SignupComponent,
     MainpageComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    MyDirectiveDirective
     
   ],
   imports: [
